@@ -21,3 +21,5 @@ const peopleSchema = new mongoose.Schema({
 });
 
 const People = mongoose.model("People", peopleSchema);
+
+module.exports = People;

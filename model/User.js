@@ -37,6 +37,11 @@ const userSchema = new mongoose.Schema({
     ref: "Movie",
     default: [],
   },
+  customLists: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "CustomList",
+    default: [],
+  },
   createdAt: {
     type: Date,
     default: Date.now,
