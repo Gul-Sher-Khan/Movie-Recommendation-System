@@ -10,19 +10,7 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.get("/test", (req, res) => {
-  res.send("Test route working");
-});
-
-// Middleware for /api/v1/auth routes
-app.use(
-  "/api/v1/auth",
-  (req, res, next) => {
-    console.log("Middleware executed");
-    next();
-  },
-  authRouter
-);
+app.use("/api/v1/auth", authRouter);
 
 // Catch-all for undefined routes
 app.use((req, res, next) => {

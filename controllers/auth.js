@@ -16,22 +16,16 @@ const login = async (req, res) => {
   if (!email || !password) {
     return res.status(400).json({ message: "Email and password are required" });
   }
-
-  const user = await User.findOne({ email });
-
+  const user = await User.findOne({ email }).select("+password");
   if (!user) {
     return res.status(404).json({ message: "User not found" });
   }
-
-  const isPasswordCorrect = await user.comparePassword(password);
-
+  const isPasswordCorrect = await user.comparePasswords(password);
   if (!isPasswordCorrect) {
     return res.status(400).json({ message: "Invalid credentials" });
   }
-
   const token = user.generateToken();
-
-  res.status(200).json({ user, token });
+  res.status(200).json({ token });
 };
 
 module.exports = { register, login };
