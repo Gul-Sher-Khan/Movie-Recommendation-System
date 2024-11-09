@@ -2,7 +2,11 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const connectDB = require("./db/connect");
+
+const verifyToken = require("./middleware/authentication"); // Import verifyToken middleware
+
 const authRouter = require("./routes/auth"); // Import auth router
+const profileRouter = require("./routes/profile"); // Import profile router
 
 app.use(express.json());
 
@@ -11,6 +15,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/auth", authRouter);
+
+app.use("/api/v1/profile", verifyToken, profileRouter);
 
 // Catch-all for undefined routes
 app.use((req, res, next) => {
