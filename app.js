@@ -9,6 +9,7 @@ const authRouter = require("./routes/auth"); // Import auth router
 const profileRouter = require("./routes/profile"); // Import profile router
 const peopleRouter = require("./routes/people"); // Import people router
 const movieRouter = require("./routes/movie"); // Import movie router
+const reviewRouter = require("./routes/review"); // Import review router
 
 app.use(express.json());
 
@@ -23,6 +24,8 @@ app.use("/api/v1/profile", verifyToken, profileRouter);
 app.use("/api/v1/people", verifyToken, verifyAdmin, peopleRouter);
 
 app.use("/api/v1/movies", verifyToken, movieRouter);
+
+app.use("/api/v1/reviews", verifyToken, reviewRouter);
 
 // Catch-all for undefined routes
 app.use((req, res, next) => {
