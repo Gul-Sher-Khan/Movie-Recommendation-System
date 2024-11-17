@@ -15,6 +15,8 @@ const customListRouter = require("./routes/customList"); // Import customList ro
 const searchRouter = require("./routes/search"); // Import search router
 const newsRouter = require("./routes/news"); // Import news router
 const forumRouter = require("./routes/forum"); // Import forum router
+const awardsRouter = require("./routes/awards"); // Import awards router
+const boxOfficeRouter = require("./routes/boxOffice"); // Import boxOffice router
 
 app.use(express.json());
 
@@ -41,6 +43,10 @@ app.use("/api/v1/search", searchRouter);
 app.use("/api/v1/news", newsRouter);
 
 app.use("/api/v1/forums", verifyToken, forumRouter);
+
+app.use("/api/v1/awards", verifyToken, awardsRouter);
+
+app.use("/api/v1/boxOffice", boxOfficeRouter);
 
 // Catch-all for undefined routes
 app.use((req, res, next) => {
