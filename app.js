@@ -12,6 +12,7 @@ const movieRouter = require("./routes/movie"); // Import movie router
 const reviewRouter = require("./routes/review"); // Import review router
 const recommendationRouter = require("./routes/recommendation"); // Import recommendation router
 const customListRouter = require("./routes/customList"); // Import customList router
+const searchRouter = require("./routes/search"); // Import search router
 
 app.use(express.json());
 
@@ -32,6 +33,8 @@ app.use("/api/v1/reviews", verifyToken, reviewRouter);
 app.use("/api/v1/recommendations", verifyToken, recommendationRouter);
 
 app.use("/api/v1/customLists", verifyToken, customListRouter);
+
+app.use("/api/v1/search", searchRouter);
 
 // Catch-all for undefined routes
 app.use((req, res, next) => {
